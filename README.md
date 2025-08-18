@@ -1,79 +1,68 @@
-# Gallump2 - AI-Powered Trading Assistant
+# Gallump2 - AI Trading Assistant
 
-A modular trading system with AI-powered strategy generation and IBKR integration.
-
-## Features
-
-- **AI Strategy Generation**: Claude AI generates trading strategies based on market analysis
-- **RED BUTTON Confirmation**: Multi-stage confirmation for trade execution
-- **Portfolio Management**: Real-time portfolio tracking with P&L
-- **IBKR Integration**: Direct connection to Interactive Brokers
-- **Modular Architecture**: Clean separation of concerns with single-responsibility modules
+## What It Does
+- Chat with AI about trading ideas
+- Get trade suggestions from Claude
+- Execute trades on Interactive Brokers
+- Track your portfolio in real-time
 
 ## Quick Start
 
-### Prerequisites
+1. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+cd gallump/frontend && npm install
+```
+
+2. **Set up .env file:**
+```bash
+ANTHROPIC_API_KEY=your-claude-api-key
+ADMIN_PASSWORD=Snoop23
+IBKR_PORT=4001  # or 4002 for paper trading
+```
+
+3. **Start everything:**
+```bash
+# Terminal 1: Start IBKR Gateway
+
+# Terminal 2: Backend
+python -m gallump.api.server
+
+# Terminal 3: Frontend
+cd gallump/frontend && npm run dev
+```
+
+4. **Open browser:** http://localhost:3000
+
+## How to Use
+
+1. **Chat Tab**: Talk to Claude about trading ideas
+2. **Portfolio Tab**: See your positions and P&L
+3. **Analytics Tab**: Basic market analysis
+4. **RED BUTTON**: Confirm trades before execution
+
+## Project Structure
+
+```
+gallump2/
+├── gallump/
+│   ├── core/           # Trading logic
+│   ├── api/            # REST API
+│   └── frontend/       # React app
+├── gallump_next/       # New modular architecture
+└── mcp_ibkr_server.py  # Claude Desktop tools
+```
+
+## Safety Features
+- No trades without confirmation
+- Risk limits enforced
+- All trades logged
+
+## Requirements
 - Python 3.9+
 - Node.js 18+
-- Interactive Brokers Gateway/TWS
-- Anthropic API key
+- Interactive Brokers account
+- Claude API key
 
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/gallump2.git
-cd gallump2
-```
-
-2. Set up Python environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-3. Set up frontend:
-```bash
-cd gallump/frontend
-npm install
-```
-
-4. Configure environment:
-```bash
-cp .env.example .env
-# Edit .env with your API keys and settings
-```
-
-### Running the Application
-
-1. Start IBKR Gateway/TWS (port 4001 for live, 4002 for paper)
-
-2. Start the backend:
-```bash
-python -m gallump.api.server
-```
-
-3. Start the frontend:
-```bash
-cd gallump/frontend
-npm run dev
-```
-
-4. Open http://localhost:3000 in your browser
-
-## Architecture
-
-### Modular Design
-- **Core**: Connection management, types
-- **Market Data**: Price fetching
-- **Execution**: Order validation and execution
-- **Portfolio**: Position tracking
-- **Strategy**: AI-powered strategy generation
-
-### MCP Integration
-Includes MCP server for Claude Desktop integration (mcp_ibkr_server.py)
-
-## License
-
-MIT
+## Support
+This is experimental software. Use at your own risk.
