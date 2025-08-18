@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "gallump-enhanced-analytics": {
+      "command": "python3",
+      "args": ["/Users/schmoll/Desktop/Gallump/mcp_enhanced_claude.py"],
+      "env": {
+        "GALLUMP_DB_PATH": "/Users/schmoll/Desktop/Gallump/data/trading.db",
+        "IBKR_HOST": "127.0.0.1",
+        "IBKR_PORT": "4001",
+        "IBKR_CLIENT_ID": "999"
+      }
+    }
+  }
+}
