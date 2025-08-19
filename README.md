@@ -1,68 +1,49 @@
-# Gallump2 - AI Trading Assistant
+# Gallump2 - Clean Trading Architecture
 
-## What It Does
-- Chat with AI about trading ideas
-- Get trade suggestions from Claude
-- Execute trades on Interactive Brokers
-- Track your portfolio in real-time
+Two separate projects in one repository:
 
-## Quick Start
+## 1. MCP Server for Claude Desktop
+**File:** `mcp_ibkr_server.py`
 
-1. **Install dependencies:**
+Provides IBKR trading tools to Claude Desktop:
+- Get quotes and market data
+- View positions and orders
+- Run market scanners
+- Get historical data
+
+**Usage:**
 ```bash
-pip install -r requirements.txt
-cd gallump/frontend && npm install
+python mcp_ibkr_server.py
 ```
 
-2. **Set up .env file:**
-```bash
-ANTHROPIC_API_KEY=your-claude-api-key
-ADMIN_PASSWORD=Snoop23
-IBKR_PORT=4001  # or 4002 for paper trading
+## 2. Gallump2 Trading System
+**Folder:** `gallump2_trading/`
+
+Clean modular architecture with single-responsibility modules:
+- Connection management with auto-reconnect
+- Connection pooling for efficiency
+- Market data fetching
+- Order validation
+- Position tracking
+
+**Structure:**
 ```
-
-3. **Start everything:**
-```bash
-# Terminal 1: Start IBKR Gateway
-
-# Terminal 2: Backend
-python -m gallump.api.server
-
-# Terminal 3: Frontend
-cd gallump/frontend && npm run dev
+gallump2_trading/
+├── core/           # Connection management, types
+├── market_data/    # Price fetching
+├── execution/      # Order validation
+└── portfolio/      # Position tracking
 ```
-
-4. **Open browser:** http://localhost:3000
-
-## How to Use
-
-1. **Chat Tab**: Talk to Claude about trading ideas
-2. **Portfolio Tab**: See your positions and P&L
-3. **Analytics Tab**: Basic market analysis
-4. **RED BUTTON**: Confirm trades before execution
-
-## Project Structure
-
-```
-gallump2/
-├── gallump/
-│   ├── core/           # Trading logic
-│   ├── api/            # REST API
-│   └── frontend/       # React app
-├── gallump_next/       # New modular architecture
-└── mcp_ibkr_server.py  # Claude Desktop tools
-```
-
-## Safety Features
-- No trades without confirmation
-- Risk limits enforced
-- All trades logged
 
 ## Requirements
 - Python 3.9+
-- Node.js 18+
-- Interactive Brokers account
-- Claude API key
+- Interactive Brokers Gateway
+- `pip install -r requirements.txt`
 
-## Support
-This is experimental software. Use at your own risk.
+## Environment Setup
+Copy `.env.example` to `.env` and configure:
+- ANTHROPIC_API_KEY
+- IBKR_HOST and IBKR_PORT
+
+## License
+MIT
